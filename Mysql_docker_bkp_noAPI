@@ -1,0 +1,14 @@
+#!/bin/bash
+clear
+echo "Running containers"
+docker ps;
+echo ""
+read -p 'Input container name to BKP: ' container
+read -p 'Input database user: ' user
+read -sp 'Input database password: ' pass
+echo ""
+
+read -p 'Input database name to Backup: ' datab
+current_time=$(date "+%Y.%m.%d-%H.%M.%S")
+
+docker exec $container /usr/bin/mysqldump -u $user --password=$pass $datab > $container.backup.$current_time.sql
