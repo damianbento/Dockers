@@ -1,14 +1,12 @@
 sudo vim /lib/systemd/system/docker.service
-## change this
 
+## change this
 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 
-
 ##To this
-
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375
-
 
 ## reload and restart services 
 
 sudo systemctl daemon-reload
+sudo systemctl restart docker.service
